@@ -1,0 +1,27 @@
+server:
+  port: 8080
+#  servlet:
+#    context-path: /identity
+spring:
+  application:
+    name : studySpring
+  main:
+    lazy-initialization: true     # Chỉ khởi tạo các bean khi cần
+  datasource:
+    url: jdbc:mysql://localhost:3306/ecommerce
+    username: root
+    password: quannguyen2004
+#  security:
+#    user:
+#      name: admin
+#      password: admin
+  jpa:
+    hibernate.ddl-auto: update
+#      driver-class-name: com.mysql.cj.jdbc.Driver
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+
+
+
+ 
