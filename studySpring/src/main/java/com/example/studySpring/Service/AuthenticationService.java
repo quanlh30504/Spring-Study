@@ -37,7 +37,7 @@ public class AuthenticationService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
-    @Value("${JWT.signerKey}")
+    @Value("${jwt.signerKey}")
     private String SIGNER_KEY;
 
     public AuthenticationResponse authenticate(AuthenticationRequest request){

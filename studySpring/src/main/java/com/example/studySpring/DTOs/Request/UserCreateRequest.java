@@ -22,10 +22,12 @@ public class UserCreateRequest {
     @JsonProperty("phoneNumber")
     @Size(max = 10)
     private String phoneNumber;
+
     @JsonProperty("address")
     private String address;
-//    @JsonProperty("dob")
-//    private Date dateOfBirth;
+
+    @JsonProperty("dob")
+    private Date dateOfBirth;
 
     @JsonProperty("username")
     @Size(min = 3, message = "USERNAME_INVALID")

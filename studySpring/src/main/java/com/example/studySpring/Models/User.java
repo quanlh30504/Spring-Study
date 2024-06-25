@@ -8,21 +8,19 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.xml.transform.sax.SAXTransformerFactory;
+import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.Set;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "Users")
-public class User {
+@Table(name = "users")
+public class User{
     @Id
-//    @GeneratedValue(generator = "UUID")
-//    @GenericGenerator(
-//            name = "UUID",
-//            strategy = "org.hibernate.id.UUIDGenerator"
-//    )
+//    @GeneratedValue(strategy = GenerationType.UUID)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
@@ -39,7 +37,7 @@ public class User {
     @Column(name = "password", length = 100)
     private String password;
 
-    
+//    private Set<String> roles;
 
 //    @OneToMany
 //    @JoinColumn(name = "role_id", referencedColumnName = "id")

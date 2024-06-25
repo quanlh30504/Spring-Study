@@ -8,7 +8,7 @@ spring:
   main:
     lazy-initialization: true     # Chỉ khởi tạo các bean khi cần
   datasource:
-    url: jdbc:mysql://localhost:3306/ecommerce
+    url: "jdbc:mysql://localhost:3306/studyspring"
     username: root
     password: quannguyen2004
 #  security:
@@ -22,8 +22,8 @@ logging:
   level:
     org.hibernate.SQL: DEBUG
 
-JWT:
-  signerKey: d3+MtWAFiL3bhiALgkfeMQeWFT3sa7krhWp/HLYh0SrB4jlXf0MKd8IDI4B6hDM1\n
+jwt:
+  signerKey: "d3+MtWAFiL3bhiALgkfeMQeWFT3sa7krhWp/HLYh0SrB4jlXf0MKd8IDI4B6hDM1\n"
 
 
 

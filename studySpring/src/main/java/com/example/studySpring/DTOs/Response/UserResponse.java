@@ -4,7 +4,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -14,9 +16,11 @@ import java.util.Date;
 public class UserResponse {
     String fullName;
     String username;
-    String password;
     String phoneNumber;
     String address;
     Date dateOfBirth;
+//    LocalDateTime created_at;
+//    LocalDateTime updated_at;
+//    Set<String> roles;
 
 }

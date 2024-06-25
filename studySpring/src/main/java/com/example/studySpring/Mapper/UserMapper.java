@@ -10,9 +10,9 @@ import org.mapstruct.factory.Mappers;
 
 @Mapper(componentModel = "spring")
 public interface UserMapper {
-//    UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
+    @Mapping(target = "id", ignore = true)
     User toUser(UserCreateRequest request);
+    @Mapping(target = "id", ignore = true)
     User updateUser(@MappingTarget User user, UserCreateRequest userCreateRequest);
     UserResponse toUserResponse(User user);
-
 }
