@@ -1,6 +1,6 @@
 package com.example.studySpring.Config;
 
-import com.example.studySpring.Enums.Role;
+import com.example.studySpring.Enums.Roles;
 import com.example.studySpring.Models.User;
 import com.example.studySpring.Repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -26,12 +26,12 @@ public class ApplicationInitConfig {
         return args -> {
             if (userRepository.findByUsername("admin").isEmpty()) {
                 Set<String> roles = new HashSet<>();
-                roles.add(Role.ADMIN.name());
+                roles.add(Roles.ADMIN.name());
 
                 User user = User.builder()
                         .username("admin")
                         .password(passwordEncoder.encode("admin"))
-                        .roles(roles)
+//                        .roles(roles)
                         .build();
 
                 userRepository.save(user);

@@ -1,5 +1,6 @@
 package com.example.studySpring.DTOs.Response;
 
+import com.example.studySpring.Models.Role;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -22,6 +23,6 @@ public class UserResponse {
     Date dateOfBirth;
 //    LocalDateTime created_at;
 //    LocalDateTime updated_at;
-    Set<String> roles;
+    Set<Role> roles;
 
 }

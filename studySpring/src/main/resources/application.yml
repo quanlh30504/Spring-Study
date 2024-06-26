@@ -17,6 +17,7 @@ spring:
 #      password: admin
   jpa:
     hibernate.ddl-auto: update
+    show-sql: true
 #      driver-class-name: com.mysql.cj.jdbc.Driver
 logging:
   level:

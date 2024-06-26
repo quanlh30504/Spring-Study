@@ -1,6 +1,6 @@
 package com.example.studySpring.Enums;
 
-public enum Role {
+public enum Roles {
     USER,
     ADMIN
 }

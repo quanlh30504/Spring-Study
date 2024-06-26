@@ -2,22 +2,16 @@ package com.example.studySpring.Service;
 
 import com.example.studySpring.DTOs.Request.UserCreateRequest;
 import com.example.studySpring.DTOs.Response.UserResponse;
-import com.example.studySpring.Enums.Role;
+import com.example.studySpring.Enums.Roles;
 import com.example.studySpring.ExceptionHandling.AppException;
 import com.example.studySpring.ExceptionHandling.ErrorCode;
 import com.example.studySpring.Mapper.UserMapper;
 import com.example.studySpring.Models.User;
 import com.example.studySpring.Repository.UserRepository;
-import com.nimbusds.jose.proc.SecurityContext;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 //import org.springframework.security.crypto.password.PasswordEncoder;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PostAuthorize;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -60,8 +54,8 @@ public class UserService {
         user.setPassword(passwordEncoder.encode(newUser.getPassword())); // Mã hóa password
 
         Set<String> roles = new HashSet<>();
-        roles.add(Role.USER.name());
-        user.setRoles(roles);
+        roles.add(Roles.USER.name());
+//        user.setRoles(roles);
 
         return userMapper.toUserResponse(userRepository.save(user));
     }

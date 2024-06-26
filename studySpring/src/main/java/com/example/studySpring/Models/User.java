@@ -37,7 +37,8 @@ public class User{
 //    @Column(name = "password", length = 100)
     private String password;
 
-    private Set<String> roles;
+    @ManyToMany
+    private Set<Role> roles;
 
 //    @OneToMany
 //    @JoinColumn(name = "role_id", referencedColumnName = "id")

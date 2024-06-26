@@ -86,9 +86,9 @@ public class AuthenticationService {
     // Tạo scope role
     private String buildScope (User user){
         StringJoiner stringJoiner = new StringJoiner(" "); // Các role cách nhau bằng 1 khoảng trắng " "
-        if (!CollectionUtils.isEmpty(user.getRoles())) {
-            user.getRoles().forEach(role -> stringJoiner.add(role));
-        }
+//        if (!CollectionUtils.isEmpty(user.getRoles())) {
+//            user.getRoles().forEach(role -> stringJoiner.add(role));
+//        }
         return stringJoiner.toString();
     }
 
