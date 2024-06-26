@@ -14,5 +14,6 @@ public interface UserMapper {
     User toUser(UserCreateRequest request);
     @Mapping(target = "id", ignore = true)
     User updateUser(@MappingTarget User user, UserCreateRequest userCreateRequest);
+    @Mapping(source = "id",target = "id")
     UserResponse toUserResponse(User user);
 }

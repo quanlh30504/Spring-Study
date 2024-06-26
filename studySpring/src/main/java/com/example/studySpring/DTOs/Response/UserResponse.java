@@ -14,6 +14,7 @@ import java.util.Set;
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class UserResponse {
+    String id;
     String fullName;
     String username;
     String phoneNumber;
@@ -21,6 +22,6 @@ public class UserResponse {
     Date dateOfBirth;
 //    LocalDateTime created_at;
 //    LocalDateTime updated_at;
-//    Set<String> roles;
+    Set<String> roles;
 
 }

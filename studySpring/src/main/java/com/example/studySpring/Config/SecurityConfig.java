@@ -1,12 +1,11 @@
 package com.example.studySpring.Config;
 
-import com.fasterxml.jackson.databind.annotation.JsonValueInstantiator;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
-import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -16,17 +15,23 @@ import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
 
 @Configuration
+@EnableMethodSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
     private final String[] PUBLIC_ENDPOINTS = {
-            "/api/v1/user/signUp/",
+            "/api/v1/users/signUp",
             "/api/v1/auth/introspect",
             "/api/v1/auth/signIn"
     };
+    private final String[] ADMIN_ENDPOINTS = {
+            "/api/v1/users",
+            "/api/v1/users/{id}"
+    };
+
     @Value("${jwt.signerKey}")
     private String signerKey;
 
@@ -37,14 +42,16 @@ public class SecurityConfig {
     }
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
-        // Truy cập các public endpoints ko cần token, các request còn lại cần phải xác thực token
+        // Chỉnh sửa quyền permit cho từng endpoint
         httpSecurity.authorizeHttpRequests(request ->
                         request.requestMatchers(HttpMethod.POST,PUBLIC_ENDPOINTS).permitAll()
+                                .requestMatchers(HttpMethod.GET,ADMIN_ENDPOINTS).hasRole("ADMIN")
                                 .anyRequest().authenticated());
 
         // Xác thực token từ các request
         httpSecurity.oauth2ResourceServer(oauth2 ->
                 oauth2.jwt(jwtConfigurer -> jwtConfigurer.decoder(jwtDecoder()))
+                        .authenticationEntryPoint(new JwtAuthenticationEntryPoint())
         );
 
         httpSecurity.csrf(AbstractHttpConfigurer::disable);  // Tắt chức năng bảo mật CSRF
