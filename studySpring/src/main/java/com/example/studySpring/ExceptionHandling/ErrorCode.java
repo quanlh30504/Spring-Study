@@ -12,11 +12,14 @@ public enum ErrorCode {
     USER_ID_NOT_EXISTED(1002,"UserId not existed",HttpStatus.NOT_FOUND),
     USERNAME_NOT_EXISTED(1003, "Username not existed", HttpStatus.NOT_FOUND),
 
+    //Role
+    ROLE_NOT_EXISTED(2003,"Role not existed",HttpStatus.NOT_FOUND),
+
     // Product exception
-    PRODUCT_ID_NOT_EXISTED(2002,"Product id not existed",HttpStatus.NOT_FOUND),
+    PRODUCT_ID_NOT_EXISTED(3002,"Product id not existed",HttpStatus.NOT_FOUND),
 
     // Category exception
-    CATEGORY_ID_NOT_EXISTED(3002,"Category id not existed",HttpStatus.NOT_FOUND),
+    CATEGORY_ID_NOT_EXISTED(4002,"Category id not existed",HttpStatus.NOT_FOUND),
 
     UNCATEGORIZED_EXCEPTION(9999, "Uncategorized error",HttpStatus.INTERNAL_SERVER_ERROR),
     INVALID_KEY(9998,"Invalid key message",HttpStatus.BAD_REQUEST),

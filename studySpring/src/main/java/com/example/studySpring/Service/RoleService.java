@@ -2,6 +2,8 @@ package com.example.studySpring.Service;
 
 import com.example.studySpring.DTOs.Request.RoleRequest;
 import com.example.studySpring.DTOs.Response.RoleResponse;
+import com.example.studySpring.ExceptionHandling.AppException;
+import com.example.studySpring.ExceptionHandling.ErrorCode;
 import com.example.studySpring.Mapper.RoleMapper;
 import com.example.studySpring.Models.Permission;
 import com.example.studySpring.Models.Role;
@@ -11,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.nio.ReadOnlyBufferException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -37,6 +40,10 @@ public class RoleService {
         return roles.stream()
                 .map(roleMapper::toRoleResponse)
                 .toList();
+    }
+    public RoleResponse getRoleById(String id){
+        Role role = roleRepository.findById(id).orElseThrow(() -> new AppException(ErrorCode.ROLE_NOT_EXISTED));
+        return roleMapper.toRoleResponse(role);
     }
 
     public void deleteRole(String role){

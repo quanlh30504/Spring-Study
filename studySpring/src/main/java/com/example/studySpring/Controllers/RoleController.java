@@ -5,6 +5,7 @@ import com.example.studySpring.DTOs.Request.RoleRequest;
 import com.example.studySpring.DTOs.Response.ApiResponse;
 import com.example.studySpring.DTOs.Response.PermissionResponse;
 import com.example.studySpring.DTOs.Response.RoleResponse;
+import com.example.studySpring.Models.Role;
 import com.example.studySpring.Service.RoleService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -34,6 +35,13 @@ public class RoleController {
                 .code(1000)
                 .message("Get all permissions.")
                 .data(roleService.getAllRole())
+                .build();
+    }
+    @GetMapping("/{id}")
+    private ApiResponse<RoleResponse> getRoleById(@PathVariable String id){
+        return ApiResponse.<RoleResponse>builder()
+                .code(1000)
+                .data(roleService.getRoleById(id))
                 .build();
     }
 

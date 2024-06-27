@@ -23,6 +23,6 @@ public class UserResponse {
     Date dateOfBirth;
 //    LocalDateTime created_at;
 //    LocalDateTime updated_at;
-    Set<Role> roles;
+    Set<RoleResponse> roles;
 
 }

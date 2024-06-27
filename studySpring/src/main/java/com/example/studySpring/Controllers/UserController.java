@@ -1,12 +1,15 @@
 package com.example.studySpring.Controllers;
 import com.example.studySpring.DTOs.Request.UserCreateRequest;
+import com.example.studySpring.DTOs.Request.UserUpdateRequest;
 import com.example.studySpring.DTOs.Response.ApiResponse;
 import com.example.studySpring.DTOs.Response.UserResponse;
 import com.example.studySpring.Models.User;
 import com.example.studySpring.Service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,6 +21,7 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping()
+    @PreAuthorize("hasRole('ADMIN')")
     public ApiResponse<List<UserResponse>> getAllUser(){
         List<UserResponse> users = userService.getAllUser();
         return ApiResponse.<List<UserResponse>>builder()
@@ -50,6 +54,15 @@ public class UserController {
                 .code(1000)
                 .message("Create user successfully!")
                 .data(userService.createUser(newUser))
+                .build();
+    }
+
+    @PutMapping("/{id}")
+    public ApiResponse<UserResponse> updateUser(@PathVariable String id, @RequestBody UserUpdateRequest request){
+        return ApiResponse.<UserResponse>builder()
+                .code(1000)
+                .message("Update user successfully")
+                .data(userService.updateUser(id, request))
                 .build();
     }
 

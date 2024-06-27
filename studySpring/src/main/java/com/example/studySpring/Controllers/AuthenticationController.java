@@ -2,6 +2,7 @@ package com.example.studySpring.Controllers;
 
 import com.example.studySpring.DTOs.Request.AuthenticationRequest;
 import com.example.studySpring.DTOs.Request.IntrospectRequest;
+import com.example.studySpring.DTOs.Request.LogoutRequest;
 import com.example.studySpring.DTOs.Response.ApiResponse;
 import com.example.studySpring.DTOs.Response.AuthenticationResponse;
 import com.example.studySpring.DTOs.Response.IntrospectResponse;
@@ -10,6 +11,7 @@ import com.nimbusds.jose.JOSEException;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.RequiredArgsConstructor;
 import org.apache.http.nio.protocol.Pipelined;
+import org.springframework.aop.framework.AopInfrastructureBean;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -33,6 +35,16 @@ public class AuthenticationController {
         return apiResponse;
     }
 
+    @PostMapping("/logout")
+    public ApiResponse logout(@RequestBody LogoutRequest request)
+            throws ParseException, JOSEException {
+        authenticationService.logout(request);
+        return ApiResponse.builder()
+                .code(1000)
+                .message("Logout successfully")
+                .build();
+    }
+
     @PostMapping("/introspect")
     public ApiResponse<IntrospectResponse> introspect(@RequestBody IntrospectRequest request)
             throws ParseException, JOSEException {
@@ -40,8 +52,5 @@ public class AuthenticationController {
         ApiResponse<IntrospectResponse> apiResponse = new ApiResponse<>();
         apiResponse.setData(introspectResponse);
         return apiResponse;
-
     }
-
-
 }

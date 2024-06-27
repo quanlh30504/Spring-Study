@@ -59,7 +59,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(value = org.springframework.security.access.AccessDeniedException.class)
-    public ResponseEntity<ApiResponse> handlingAccessDeniedException(AccessDeniedException exception){
+    public ResponseEntity<ApiResponse> handlingAccessDeniedException(org.springframework.security.access.AccessDeniedException exception){
         ErrorCode errorCode = ErrorCode.UNAUTHORIZED;
         return ResponseEntity.status(errorCode.getHttpStatus())
                 .body(ApiResponse.builder()

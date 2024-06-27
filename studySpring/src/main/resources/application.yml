@@ -17,11 +17,11 @@ spring:
 #      password: admin
   jpa:
     hibernate.ddl-auto: update
-    show-sql: true
+#    show-sql: true
 #      driver-class-name: com.mysql.cj.jdbc.Driver
-logging:
-  level:
-    org.hibernate.SQL: DEBUG
+#logging:
+#  level:
+#    org.hibernate.SQL: DEBUG
 
 jwt:
   signerKey: "d3+MtWAFiL3bhiALgkfeMQeWFT3sa7krhWp/HLYh0SrB4jlXf0MKd8IDI4B6hDM1\n"
