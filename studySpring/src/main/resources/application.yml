@@ -25,8 +25,8 @@ spring:
 
 jwt:
   signerKey: "d3+MtWAFiL3bhiALgkfeMQeWFT3sa7krhWp/HLYh0SrB4jlXf0MKd8IDI4B6hDM1\n"
-
-
+  valid-duration: 60 # Thời hạn của 1 token  # seconds
+  refreshable-duration: 120 # seconds  # Thời gian refresh token
 
 
 

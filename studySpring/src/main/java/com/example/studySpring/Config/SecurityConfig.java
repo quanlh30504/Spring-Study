@@ -27,12 +27,13 @@ import javax.crypto.spec.SecretKeySpec;
 public class SecurityConfig {
     private final String[] PUBLIC_ENDPOINTS = {
             "/api/v1/users/signUp",
+            "/api/v1/users",
             "/api/v1/auth/introspect",
             "/api/v1/auth/signIn",
-            "api/v1/auth/logout"
+            "api/v1/auth/logout",
+            "api/v1/auth/reToken"
     };
     private final String[] ADMIN_ENDPOINTS = {
-            "/api/v1/users",
 //            "/api/v1/users/{id}"
     };
     @Autowired

@@ -3,6 +3,7 @@ package com.example.studySpring.Controllers;
 import com.example.studySpring.DTOs.Request.AuthenticationRequest;
 import com.example.studySpring.DTOs.Request.IntrospectRequest;
 import com.example.studySpring.DTOs.Request.LogoutRequest;
+import com.example.studySpring.DTOs.Request.RefreshTokenRequest;
 import com.example.studySpring.DTOs.Response.ApiResponse;
 import com.example.studySpring.DTOs.Response.AuthenticationResponse;
 import com.example.studySpring.DTOs.Response.IntrospectResponse;
@@ -52,5 +53,15 @@ public class AuthenticationController {
         ApiResponse<IntrospectResponse> apiResponse = new ApiResponse<>();
         apiResponse.setData(introspectResponse);
         return apiResponse;
+    }
+
+    @PostMapping("/reToken")
+    public ApiResponse<AuthenticationResponse> refreshToken(@RequestBody RefreshTokenRequest request)
+            throws ParseException, JOSEException {
+        return ApiResponse.<AuthenticationResponse>builder()
+                .code(1000)
+                .message("Refresh Token successfully!")
+                .data(authenticationService.refreshToken(request))
+                .build();
     }
 }
